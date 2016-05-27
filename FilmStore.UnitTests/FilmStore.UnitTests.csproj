@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionFilmRepositoryTest.cs" />
+    <Compile Include="FilmBuilder.cs" />
     <Compile Include="FilmTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

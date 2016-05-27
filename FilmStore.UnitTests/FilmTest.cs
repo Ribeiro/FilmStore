@@ -13,7 +13,7 @@ namespace FilmStore.UnitTests
         [Test]
         public void ConstructorShouldSetProperties()
         {
-            Film film = new Film(1L,"Aliens", new DateTime(1984,1,20), 5, Genre.Science_Fiction);
+            Film film = new FilmBuilder().Build();
             Assert.AreEqual("Aliens", film.Title);
             Assert.AreEqual(new DateTime(1984, 1, 20), film.Released);
             Assert.AreEqual(5, film.Stock);
@@ -31,8 +31,8 @@ namespace FilmStore.UnitTests
         [Test]
         public void FilmsWithSameidShouldBeEqual()
         {
-            Film film1 = new Film(1L, "Aliens", new DateTime(1984, 1, 20), 5, Genre.Science_Fiction);
-            Film film2 = new Film(1L, "Star Wars: The Empire Strikes Back", new DateTime(1987, 1, 21), 5, Genre.Science_Fiction);
+            Film film1 = new FilmBuilder().Build();
+            Film film2 = new FilmBuilder().WithId(1L).WithTitle("Star Wars: The Empire Strikes Back").ReleasedOn(new DateTime(1987, 1, 21)).WithStockOf(5).WithGenre(Genre.Science_Fiction).Build();
 
             Assert.AreEqual(film1, film2);
             Assert.AreEqual(film1.GetHashCode(), film2.GetHashCode());
@@ -41,8 +41,8 @@ namespace FilmStore.UnitTests
         [Test]
         public void FilmsWithDifferentIdsShouldBeUnequalAndShouldHaveUnequalHashCodes()
         {
-            Film film1 = new Film(1L, "Aliens", new DateTime(1984, 1, 20), 5, Genre.Science_Fiction);
-            Film film2 = new Film(2L, "Star Wars: The Empire Strikes Back", new DateTime(1987, 1, 21), 5, Genre.Science_Fiction);
+            Film film1 = new FilmBuilder().Build();
+            Film film2 = new FilmBuilder().WithId(2L).WithTitle("Star Wars: The Empire Strikes Back").ReleasedOn(new DateTime(1987, 1, 21)).WithStockOf(5).WithGenre(Genre.Science_Fiction).Build();
 
             Assert.AreNotEqual(film1, film2);
             Assert.AreNotEqual(film1.GetHashCode(), film2.GetHashCode());

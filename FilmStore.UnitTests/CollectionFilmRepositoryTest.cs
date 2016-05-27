@@ -11,18 +11,14 @@ namespace FilmStore.UnitTests
 {
     class CollectionFilmRepositoryTest
     {
-
         private Mock<ISerializer> serializer;
-        private static Film film1 = new Film(1L, "Aliens", new DateTime(1984, 1, 20), 5, Genre.Science_Fiction);
-        private static Film film2 = new Film(2L, "Star Wars: The Empire Strikes Back", new DateTime(1987, 1, 21), 5, Genre.Science_Fiction);
+        private static Film film1 = new FilmBuilder().Build();
+        private static Film film2 = new FilmBuilder().WithId(2L).WithTitle("Star Wars: The Empire Strikes Back").ReleasedOn(new DateTime(1987, 1, 21)).WithStockOf(5).WithGenre(Genre.Science_Fiction).Build();
         private List<Film> films = new List<Film> { film1, film2 };
-
-
 
         public CollectionFilmRepositoryTest()
         {
             serializer = new Mock<ISerializer>();
-
         }
 
         [OneTimeSetUp]
