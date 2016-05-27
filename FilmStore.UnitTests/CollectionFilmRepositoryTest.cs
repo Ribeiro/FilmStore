@@ -43,8 +43,8 @@ namespace FilmStore.UnitTests
 
             CollectionFilmRepository sut = new CollectionFilmRepository(serializer.Object);
 
-            Film film2 = new Film(3L, "Blade Runner", new DateTime(1982, 12, 25), 5, Genre.Science_Fiction);
-            long id = sut.Insert(film2);
+            Film film3 = new FilmBuilder().WithId(3L).WithTitle("Blade Runner").ReleasedOn(new DateTime(1982, 12, 25)).WithStockOf(5).WithGenre(Genre.Science_Fiction).Build();
+            long id = sut.Insert(film3);
 
             Assert.AreEqual(3, collectionCountAtTimeOfCall);
             serializer.Verify(s => s.Write(films), Times.Once);
