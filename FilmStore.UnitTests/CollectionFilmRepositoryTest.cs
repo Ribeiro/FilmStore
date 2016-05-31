@@ -32,7 +32,7 @@ namespace FilmStore.UnitTests
         {
             CollectionFilmRepository sut = new CollectionFilmRepository(serializer.Object);
             Film retrievedFilm = sut.SelectById(2);
-            Assert.AreEqual(film2, retrievedFilm);
+            Assert.That(film2, Is.EqualTo(retrievedFilm));
         }
 
         [Test]
@@ -46,9 +46,10 @@ namespace FilmStore.UnitTests
             Film film3 = new FilmBuilder().WithId(3L).WithTitle("Blade Runner").ReleasedOn(new DateTime(1982, 12, 25)).WithStockOf(5).WithGenre(Genre.Science_Fiction).Build();
             long id = sut.Insert(film3);
 
-            Assert.AreEqual(3, collectionCountAtTimeOfCall);
+            Assert.That(collectionCountAtTimeOfCall, Is.EqualTo(3));
             serializer.Verify(s => s.Write(films), Times.Once);
-
         }
+
     }
+
 }
